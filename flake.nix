@@ -14,6 +14,16 @@
         ''
           mkdir -p $out/bin
 
+          target=$($next/bin/gcc -v 2>&1 | sed -e 's/^Target: \(.*\)/\1/; t; d')
+          version=$($next/bin/gcc -v 2>&1 | sed -e 's/^.*version \([^ ]*\).*/\1/; t; d')
+
+          libexec=$next/libexec/gcc/$target/$version
+
+          if ! [[ -d $libexec ]]; then
+            echo "gcc libexec directory '$libexec' does not exist"
+            exit 1
+          fi
+
           for i in gcc g++; do
             substitute ${./cc-wrapper.sh} $out/bin/$i \
               --subst-var-by next $next \
@@ -22,7 +32,8 @@
               --subst-var nix \
               --subst-var system \
               --subst-var out \
-              --subst-var binutils
+              --subst-var binutils \
+              --subst-var libexec
             chmod +x $out/bin/$i
           done
 

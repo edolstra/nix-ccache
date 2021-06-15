@@ -72,7 +72,7 @@ for arg in "${compileFlags[@]}"; do
     escapedArgs+='" '
 done
 
-#echo "FINAL: $escapedArgs"
+#echo "FINAL: @next@/bin/@program@ $escapedArgs"
 
 # FIXME: add any store paths mentioned in the arguments (e.g. -B
 # flags) to the input closure, or filter them?
@@ -83,7 +83,7 @@ done
     system = "@system@";
     builder = builtins.storePath "@next@/bin/@program@";
     extra = builtins.storePath "@binutils@";
-    args = [ '"$escapedArgs"' "-B@next@/libexec/gcc/x86_64-unknown-linux-gnu/8.3.0/" "-B@binutils@/bin" ]; # FIXME
+    args = [ '"$escapedArgs"' "-B@libexec@/" "-B@binutils@/bin" ];
   }
 )' > /dev/null
 
