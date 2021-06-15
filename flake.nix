@@ -1,8 +1,6 @@
 {
   description = "A C/C++ compilation cache using recursive Nix";
 
-  edition = 201909;
-
   outputs = { self, nixpkgs }: {
 
     overlay = final: prev: {

@@ -1,11 +1,24 @@
 {
-    "inputs": {
-        "nixpkgs": {
-            "inputs": {},
-            "narHash": "sha256-WzfCXaiRzPiMRjzpa/x9Mt345jgfjVsDX6mNtc0K3S4=",
-            "originalUrl": "nixpkgs",
-            "url": "github:edolstra/nixpkgs/153ca089f43018310ff6edd6d2286819a4800af8"
-        }
+  "nodes": {
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1622622179,
+        "narHash": "sha256-XCw/9QDuj9J6prVR8YrteTcFKj2sRWYIjwgs8qOOrYQ=",
+        "path": "/nix/store/arqdfnxy6laii9c6das3fbw6iwls60xw-source",
+        "rev": "eaba7870ffc3400eca4407baa24184b7fe337ec1",
+        "type": "path"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
     },
-    "version": 3
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
 }
