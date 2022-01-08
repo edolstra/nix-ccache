@@ -47,7 +47,7 @@ fi
 source="${sources[0]}"
 
 if [[ -z $dest ]]; then
-    dest="${source%.*}.o"
+    dest="$(basename "${source%.*}.o")"
 fi
 
 if [[ $source =~ \.c$ ]]; then
