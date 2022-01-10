@@ -33,6 +33,8 @@ for ((n = 0; n < $#; n++)); do
         cppFlags+=("$arg")
     elif [[ ! $arg =~ ^- ]]; then
         sources+=("$arg")
+    elif [[ $arg =~ ^-frandom-seed= ]]; then
+        : # ignore
     else
         cppFlags+=("$arg")
         compileFlags+=("$arg")
@@ -55,6 +57,10 @@ if [[ $source =~ \.c$ ]]; then
 else
     ext=ii
 fi
+
+# set random-seed to a constant value
+destEscaped=$(echo "$dest" | tr ' ' _)
+cppFlags+=("-frandom-seed=$destEscaped")
 
 #echo "NIX-CCACHE: $@" >&2
 
