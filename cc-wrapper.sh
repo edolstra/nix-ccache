@@ -64,13 +64,19 @@ fi
 
 #echo "compiling to $dest..."
 
-escapedArgs='"-o" "${placeholder "out"}" "-c" '$(readlink -f "$dest.$ext")' '
+# compileFlags like "-x c++-header" must come before the source arguments,
+# otherwise the flags are ignored.
+# TODO ideally preserve the original order of arguments
+
+escapedArgs=
 
 for arg in "${compileFlags[@]}"; do
     escapedArgs+='"'
     escapedArgs+="$arg" # FIXME: escape
     escapedArgs+='" '
 done
+
+escapedArgs+='"-o" "${placeholder "out"}" "-c" '$(readlink -f "$dest.$ext")
 
 #echo "FINAL: @next@/bin/@program@ $escapedArgs"
 
